@@ -15,6 +15,9 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
+// Require Routes
+// require("./routes/insertroute.js")(app);
+
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
 app.listen(PORT, () => {
