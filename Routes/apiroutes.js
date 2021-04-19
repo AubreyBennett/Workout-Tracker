@@ -3,7 +3,7 @@ const { db } = require("../Models/workout.js");
 const workout = require("../Models/workout.js");
 
 module.exports = function (app) {
-    app.post("/api/workouts", function (req, res) {
+    app.post("/api/workouts/", function (req, res) {
         db.workout.create({})
         .then((dbWorkout) => {
             res.json(dbWorkout);
@@ -12,7 +12,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get("/api/workouts/", function (req, res) {
+    app.get("/api/workouts", function (req, res) {
         db.workout.find({})
         .then((dbWorkout) => {
             res.json(dbWorkout);
