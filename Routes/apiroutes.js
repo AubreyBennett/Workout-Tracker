@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const { db } = require("../Models/workout.js");
 const workout = require("../Models/workout.js");
 
 module.exports = function (app) {
@@ -20,7 +21,16 @@ module.exports = function (app) {
         });
     });
 
-
+    app.put("/api/workouts/:id", function({body, params}, res) {
+        db.workout.findByIdAndUpdate(
+            params.id,
+            {$push: {exercises:body}},
+            {new: true, runValidators: true}
+        ) .then (dbWorkout => res.json(dbWorkout))
+        .catch(error => {
+            res.json(error)
+        })
+    });
 };
 
 module.exports = Router;
