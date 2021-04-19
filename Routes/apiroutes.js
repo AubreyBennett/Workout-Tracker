@@ -12,7 +12,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get("/api/workouts", function (req, res) {
+    app.get("/api/workouts/", function (req, res) {
         db.workout.find({})
         .then((dbWorkout) => {
             res.json(dbWorkout);
@@ -30,6 +30,15 @@ module.exports = function (app) {
         .catch(error => {
             res.json(error)
         })
+    });
+
+    app.get("/api/workouts/range", function (req, res) {
+        db.workout.find({})
+        .then((dbWorkout) => {
+            res.json(dbWorkout);
+        }).catch((error) => {
+            res.json(error);
+        });
     });
 };
 
