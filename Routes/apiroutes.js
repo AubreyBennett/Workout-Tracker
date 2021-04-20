@@ -1,4 +1,4 @@
-const { Router } = require("express");
+const router = require("express").Router();
 const { db } = require("../Models/workout.js");
 const workout = require("../Models/workout.js");
 
@@ -42,4 +42,4 @@ module.exports = function (app) {
     });
 };
 
-module.exports = Router;
+module.exports = router;
