@@ -1,10 +1,9 @@
 const { Router } = require("express");
-const { db } = require("../Models/workout.js");
-const workout = require("../Models/workout.js");
+const db = require("../Models");
 
 module.exports = function (app) {
     app.post("/api/workouts/", function (req, res) {
-        db.workout.create({})
+        db.Workout.create({})
         .then((dbWorkout) => {
             res.json(dbWorkout);
         }).catch((error) => {
@@ -13,7 +12,7 @@ module.exports = function (app) {
     });
 
     app.get("/api/workouts", function (req, res) {
-        db.workout.find({})
+        db.Workout.find({})
         .then((dbWorkout) => {
             res.json(dbWorkout);
         }).catch((error) => {
@@ -22,7 +21,7 @@ module.exports = function (app) {
     });
 
     app.put("/api/workouts/:id", function({body, params}, res) {
-        db.workout.findByIdAndUpdate(
+        db.Workout.findByIdAndUpdate(
             params.id,
             {$push: {exercises:body}},
             {new: true, runValidators: true}
@@ -33,7 +32,7 @@ module.exports = function (app) {
     });
 
     app.get("/api/workouts/range", function (req, res) {
-        db.workout.find({})
+        db.Workout.find({})
         .then((dbWorkout) => {
             res.json(dbWorkout);
         }).catch((error) => {
@@ -41,5 +40,3 @@ module.exports = function (app) {
         });
     });
 };
-
-module.exports = Router;
